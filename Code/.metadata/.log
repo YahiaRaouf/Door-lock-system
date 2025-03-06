@@ -1,0 +1,355 @@
+!SESSION 2024-11-05 13:22:14.217 -----------------------------------------------
+eclipse.buildId=4.32.0.20240606-1231
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-11-05 13:23:17.402
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\mmm m'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-11-05 13:25:36.682
+!MESSAGE Indexed 'smartDoorLockSystem' (0 sources, 0 headers) in 0.001 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.ui.navigator 4 0 2024-11-05 13:27:41.774
+!MESSAGE Cannot add P/smartDoorLockSystem to the list of segments in Headers::P/smartDoorLockSystem:: as a parent.
+!STACK 0
+org.eclipse.ui.internal.navigator.NavigatorContentServiceContentProvider$CyclicPathException: Cannot add P/smartDoorLockSystem to the list of segments in Headers::P/smartDoorLockSystem:: as a parent.
+	at org.eclipse.ui.internal.navigator.NavigatorContentServiceContentProvider$TreePathCompiler.addParent(NavigatorContentServiceContentProvider.java:539)
+	at org.eclipse.ui.internal.navigator.NavigatorContentServiceContentProvider.findPaths(NavigatorContentServiceContentProvider.java:602)
+	at org.eclipse.ui.internal.navigator.NavigatorContentServiceContentProvider.findPaths(NavigatorContentServiceContentProvider.java:603)
+	at org.eclipse.ui.internal.navigator.NavigatorContentServiceContentProvider.getParents(NavigatorContentServiceContentProvider.java:330)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.getParentElement(AbstractTreeViewer.java:1793)
+	at org.eclipse.jface.viewers.TreeViewer.getParentElement(TreeViewer.java:573)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalExpand(AbstractTreeViewer.java:1733)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.setExpandedElements(AbstractTreeViewer.java:2607)
+	at org.eclipse.ui.internal.navigator.framelist.TreeViewerFrameSource.frameChanged(TreeViewerFrameSource.java:68)
+	at org.eclipse.ui.internal.navigator.CommonNavigatorFrameSource.frameChanged(CommonNavigatorFrameSource.java:55)
+	at org.eclipse.ui.internal.navigator.framelist.TreeViewerFrameSource.handlePropertyChange(TreeViewerFrameSource.java:167)
+	at org.eclipse.ui.internal.navigator.framelist.FrameList.firePropertyChange(FrameList.java:93)
+	at org.eclipse.ui.internal.navigator.framelist.FrameList.setCurrent(FrameList.java:208)
+	at org.eclipse.ui.internal.navigator.framelist.FrameList.gotoFrame(FrameList.java:165)
+	at org.eclipse.ui.internal.navigator.framelist.GoIntoAction.run(GoIntoAction.java:54)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:474)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:581)
+	at org.eclipse.jface.action.ActionContributionItem.lambda$4(ActionContributionItem.java:415)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4285)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1160)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4083)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3673)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:152)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1002 2024-11-05 13:55:01.251
+!MESSAGE Unable to read repository at jar:file:/C:/My%20Stuff/others/de.innot.avreclipse.p2repository-2.4.2.zip!/content.xml.
+!STACK 0
+java.nio.file.NoSuchFileException: C:\My Stuff\others\de.innot.avreclipse.p2repository-2.4.2.zip
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:197)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1853)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1445)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:724)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:251)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:180)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:345)
+	at java.base/sun.net.www.protocol.jar.URLJarFile.<init>(URLJarFile.java:100)
+	at java.base/sun.net.www.protocol.jar.URLJarFile.getJarFile(URLJarFile.java:69)
+	at java.base/sun.net.www.protocol.jar.JarFileFactory.get(JarFileFactory.java:192)
+	at java.base/sun.net.www.protocol.jar.JarFileFactory.getOrCreate(JarFileFactory.java:91)
+	at java.base/sun.net.www.protocol.jar.JarURLConnection.connect(JarURLConnection.java:110)
+	at java.base/sun.net.www.protocol.jar.JarURLConnection.getInputStream(JarURLConnection.java:153)
+	at org.eclipse.ecf.provider.filetransfer.browse.URLFileSystemBrowser.runRequest(URLFileSystemBrowser.java:120)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:71)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2024-11-05 16:51:31.887 -----------------------------------------------
+eclipse.buildId=4.32.0.20240606-1231
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-11-05 16:51:42.834
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\mmm m'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1002 2024-11-05 17:47:18.675
+!MESSAGE Unable to read repository at jar:file:/C:/My%20Stuff/others/de.innot.avreclipse.p2repository-2.4.2.zip!/content.xml.
+!STACK 0
+java.nio.file.NoSuchFileException: C:\My Stuff\others\de.innot.avreclipse.p2repository-2.4.2.zip
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:197)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1853)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1445)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:724)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:251)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:180)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:345)
+	at java.base/sun.net.www.protocol.jar.URLJarFile.<init>(URLJarFile.java:100)
+	at java.base/sun.net.www.protocol.jar.URLJarFile.getJarFile(URLJarFile.java:69)
+	at java.base/sun.net.www.protocol.jar.JarFileFactory.get(JarFileFactory.java:192)
+	at java.base/sun.net.www.protocol.jar.JarFileFactory.getOrCreate(JarFileFactory.java:91)
+	at java.base/sun.net.www.protocol.jar.JarURLConnection.connect(JarURLConnection.java:110)
+	at java.base/sun.net.www.protocol.jar.JarURLConnection.getInputStream(JarURLConnection.java:153)
+	at org.eclipse.ecf.provider.filetransfer.browse.URLFileSystemBrowser.runRequest(URLFileSystemBrowser.java:120)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:71)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2024-11-05 23:12:40.519 -----------------------------------------------
+eclipse.buildId=4.32.0.20240606-1231
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product -data C:\My Stuff\College\Embedded Systems Course\C files\DoorLockSystem\Code
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-11-05 23:12:48.433
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\mmm m'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1002 2024-11-05 23:59:03.611
+!MESSAGE Unable to read repository at jar:file:/C:/My%20Stuff/others/de.innot.avreclipse.p2repository-2.4.2.zip!/content.xml.
+!STACK 0
+java.nio.file.NoSuchFileException: C:\My Stuff\others\de.innot.avreclipse.p2repository-2.4.2.zip
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:197)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1853)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1445)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:724)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:251)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:180)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:345)
+	at java.base/sun.net.www.protocol.jar.URLJarFile.<init>(URLJarFile.java:100)
+	at java.base/sun.net.www.protocol.jar.URLJarFile.getJarFile(URLJarFile.java:69)
+	at java.base/sun.net.www.protocol.jar.JarFileFactory.get(JarFileFactory.java:192)
+	at java.base/sun.net.www.protocol.jar.JarFileFactory.getOrCreate(JarFileFactory.java:91)
+	at java.base/sun.net.www.protocol.jar.JarURLConnection.connect(JarURLConnection.java:110)
+	at java.base/sun.net.www.protocol.jar.JarURLConnection.getInputStream(JarURLConnection.java:153)
+	at org.eclipse.ecf.provider.filetransfer.browse.URLFileSystemBrowser.runRequest(URLFileSystemBrowser.java:120)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:71)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-11-06 02:01:21.513
+!MESSAGE Indexed 'HMI_ECU' (12 sources, 28 headers) in 0.162 sec: 507 declarations; 2,102 references; 0 unresolved inclusions; 1 syntax errors; 6 unresolved names (0.23%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-11-06 02:01:51.505
+!MESSAGE Indexed 'Control_ECU' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-11-06 02:02:04.491
+!MESSAGE Indexed 'HMI_ECU' (12 sources, 28 headers) in 0.11 sec: 507 declarations; 2,102 references; 0 unresolved inclusions; 1 syntax errors; 6 unresolved names (0.23%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-11-06 02:25:11.948
+!MESSAGE Indexed 'CarParkingSensor' (7 sources, 23 headers) in 0.087 sec: 352 declarations; 1,598 references; 0 unresolved inclusions; 1 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.ui 4 0 2024-11-06 02:31:37.418
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.IllegalArgumentException: Argument not valid
+	at org.eclipse.swt.SWT.error(SWT.java:4903)
+	at org.eclipse.swt.SWT.error(SWT.java:4837)
+	at org.eclipse.swt.SWT.error(SWT.java:4808)
+	at org.eclipse.swt.custom.StyledText.setStyleRanges(StyledText.java:10182)
+	at org.eclipse.swt.custom.StyledText.setStyleRange(StyledText.java:10058)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl.resetViewerBackground(AnnotationExpansionControl.java:898)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl$Item.deselect(AnnotationExpansionControl.java:170)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl$Item.selected(AnnotationExpansionControl.java:117)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl$MyMouseTrackListener.mouseEnter(AnnotationExpansionControl.java:299)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:217)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4285)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1160)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4083)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3673)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:152)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.eclipse.ui 4 0 2024-11-06 02:31:37.426
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.IllegalArgumentException: Argument not valid
+	at org.eclipse.swt.SWT.error(SWT.java:4903)
+	at org.eclipse.swt.SWT.error(SWT.java:4837)
+	at org.eclipse.swt.SWT.error(SWT.java:4808)
+	at org.eclipse.swt.custom.StyledText.setStyleRanges(StyledText.java:10182)
+	at org.eclipse.swt.custom.StyledText.setStyleRange(StyledText.java:10058)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl.resetViewerBackground(AnnotationExpansionControl.java:898)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl$Item.deselect(AnnotationExpansionControl.java:170)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl$MyMouseTrackListener.mouseExit(AnnotationExpansionControl.java:310)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:221)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4285)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1160)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4083)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3673)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:152)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.eclipse.ui 4 0 2024-11-06 02:31:37.434
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.IllegalArgumentException: Argument not valid
+	at org.eclipse.swt.SWT.error(SWT.java:4903)
+	at org.eclipse.swt.SWT.error(SWT.java:4837)
+	at org.eclipse.swt.SWT.error(SWT.java:4808)
+	at org.eclipse.swt.custom.StyledText.setStyleRanges(StyledText.java:10182)
+	at org.eclipse.swt.custom.StyledText.setStyleRange(StyledText.java:10058)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl.resetViewerBackground(AnnotationExpansionControl.java:898)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl$Item.deselect(AnnotationExpansionControl.java:170)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl$MyDisposeListener.widgetDisposed(AnnotationExpansionControl.java:192)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:140)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4285)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1160)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1184)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1165)
+	at org.eclipse.swt.widgets.Widget.release(Widget.java:877)
+	at org.eclipse.swt.widgets.Composite.releaseChildren(Composite.java:929)
+	at org.eclipse.swt.widgets.Widget.release(Widget.java:884)
+	at org.eclipse.swt.widgets.Composite.releaseChildren(Composite.java:929)
+	at org.eclipse.swt.widgets.Canvas.releaseChildren(Canvas.java:168)
+	at org.eclipse.swt.widgets.Decorations.releaseChildren(Decorations.java:715)
+	at org.eclipse.swt.widgets.Shell.releaseChildren(Shell.java:1389)
+	at org.eclipse.swt.widgets.Widget.release(Widget.java:884)
+	at org.eclipse.swt.widgets.Widget.dispose(Widget.java:466)
+	at org.eclipse.swt.widgets.Decorations.dispose(Decorations.java:396)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl.dispose(AnnotationExpansionControl.java:698)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AnnotationExpansionControl$MyMouseTrackListener.mouseExit(AnnotationExpansionControl.java:320)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:221)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:91)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4285)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1160)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4083)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3673)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:152)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+!SESSION 2024-11-06 18:24:39.018 -----------------------------------------------
+eclipse.buildId=4.32.0.20240606-1231
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product C:\My Stuff\College\Embedded Systems Course\C files\DoorLockSystem\Code\HMI_ECU\timer.c
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product C:\My Stuff\College\Embedded Systems Course\C files\DoorLockSystem\Code\HMI_ECU\timer.c
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-11-06 18:25:04.151
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\mmm m'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1002 2024-11-06 18:44:17.132
+!MESSAGE Unable to read repository at jar:file:/C:/My%20Stuff/others/de.innot.avreclipse.p2repository-2.4.2.zip!/content.xml.
+!STACK 0
+java.nio.file.NoSuchFileException: C:\My Stuff\others\de.innot.avreclipse.p2repository-2.4.2.zip
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:197)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1853)
+	at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1445)
+	at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:724)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:251)
+	at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:180)
+	at java.base/java.util.jar.JarFile.<init>(JarFile.java:345)
+	at java.base/sun.net.www.protocol.jar.URLJarFile.<init>(URLJarFile.java:100)
+	at java.base/sun.net.www.protocol.jar.URLJarFile.getJarFile(URLJarFile.java:69)
+	at java.base/sun.net.www.protocol.jar.JarFileFactory.get(JarFileFactory.java:192)
+	at java.base/sun.net.www.protocol.jar.JarFileFactory.getOrCreate(JarFileFactory.java:91)
+	at java.base/sun.net.www.protocol.jar.JarURLConnection.connect(JarURLConnection.java:110)
+	at java.base/sun.net.www.protocol.jar.JarURLConnection.getInputStream(JarURLConnection.java:153)
+	at org.eclipse.ecf.provider.filetransfer.browse.URLFileSystemBrowser.runRequest(URLFileSystemBrowser.java:120)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:71)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)

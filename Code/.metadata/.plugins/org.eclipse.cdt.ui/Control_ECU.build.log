@@ -1,0 +1,36 @@
+23:18:37 **** Incremental Build of configuration Debug for project Control_ECU ****
+make all 
+Building file: ../Main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"Main.d" -MT"Main.o" -c -o "Main.o" "../Main.c"
+In file included from ../Main.c:17:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../Main.c
+ 
+Building target: Control_ECU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Control_ECU.map -mmcu=atmega32 -o "Control_ECU.elf"  ./Buzzer.o ./DC_Motor.o ./Main.o ./PIR.o ./PWM.o ./external_eeprom.o ./gpio.o ./timer.o ./twi.o ./uart.o   
+Finished building target: Control_ECU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S Control_ECU.elf  >"Control_ECU.lss"
+Finished building: Control_ECU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 Control_ECU.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    8996 bytes (27.5% Full)
+(.text + .data + .bootloader)
+
+Data:         34 bytes (1.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+23:18:38 Build Finished. 0 errors, 1 warnings. (took 607ms)
+

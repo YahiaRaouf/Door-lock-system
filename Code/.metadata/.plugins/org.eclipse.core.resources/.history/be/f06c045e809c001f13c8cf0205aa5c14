@@ -1,0 +1,163 @@
+/*
+ *	Main.c
+ *
+ *	CONTROL_ECU Application for smart door lock system
+ *
+ *  Created on: Nov 6, 2024
+ *      Author: yahia raouf
+ */
+
+#include "avr/io.h"
+#include "Headers/external_eeprom.h"
+#include "Headers/PIR.h"
+#include "Headers/uart.h"
+#include "Headers/timer.h"
+#include "Headers/Buzzer.h"
+#include "Headers/DC_Motor.h"
+#include <util/delay.h>
+#include "Headers/twi.h"
+
+/*******************************************************************************
+ *                                  Definitions                                *
+ *******************************************************************************/
+
+#define M1_READY 			0x10
+#define M2_READY 			0x20
+#define ERROR_PASS 			0x00
+#define SAVE 				0x02
+#define END_SAVING 			0x03
+#define CHECK_PASS 			0x04
+#define HOLD_DOOR	 		0x05
+#define UNLOCK_DOOR 		0x06
+#define CLOSE_DOOR			0x07
+
+/*******************************************************************************
+ *                           Global Variables                                  *
+ *******************************************************************************/
+
+uint16 g_tick = 0;
+
+/*******************************************************************************
+ *                            FUNCTIONS DEFINITIONS                            *
+ *******************************************************************************/
+
+void calcTime(void) {
+	g_tick++;
+}
+
+void Recieve_Password(void) {
+	while (UART_recieveByte() != SAVE)
+		;
+	uint8 pass, count_key;
+	for (count_key = 5; count_key > 0; count_key--) {
+
+		UART_sendByte(M2_READY);
+		pass = UART_recieveByte();
+		EEPROM_writeByte((0x0311 + count_key), pass);
+		_delay_ms(70);
+	}
+
+	UART_sendByte(END_SAVING);
+}
+
+void Check_Password(const Timer_ConfigType *Config_Ptr) {
+	while (UART_recieveByte() != CHECK_PASS)
+		;
+
+	uint8 pass = 0, pass_saved = 0, error, count_pass;
+	for (count_pass = 5; count_pass > 0; count_pass--) {
+		pass = UART_recieveByte();
+
+		EEPROM_readByte((0x0311 + count_pass), &pass_saved);
+		if (pass != pass_saved) {
+			UART_sendByte(ERROR_PASS);
+		}
+	}
+	error = UART_recieveByte();
+	if (error < 3) {
+		Check_Password(Config_Ptr);
+	} else if (error == 3) {
+		Timer_init(Config_Ptr);
+		g_tick = 0;
+		while (g_tick != 60) {
+			BUZZER_On();
+		}
+	}
+}
+
+void Open_door(const Timer_ConfigType *Config_Ptr) {
+	while (UART_recieveByte() != UNLOCK_DOOR)
+		;
+
+	Timer_init(Config_Ptr);
+
+	g_tick = 0;
+	while (g_tick != 15) {
+		DC_MOTOR_Rotate(CLockWise, 100);
+	}
+
+	g_tick = 0;
+
+	while (g_tick != 3) {
+		DC_MOTOR_Rotate(Stop, 0);
+	}
+
+	while (PIRSensor_init()) {
+		UART_sendByte(HOLD_DOOR);
+		DC_MOTOR_Rotate(Stop, 0);
+	}
+
+	UART_sendByte(CLOSE_DOOR);
+
+	g_tick = 0;
+
+	while (g_tick != 15) {
+		DC_MOTOR_Rotate(AntiClockwise, 100);
+	}
+
+	DC_MOTOR_Rotate(Stop, 0);
+
+}
+void Main_Menue(const Timer_ConfigType *Config_Ptr) {
+
+	Check_Password(Config_Ptr);
+
+	if (UART_recieveByte() == 0) {
+		if (UART_recieveByte() == '-') {
+
+			Recieve_Password();
+		} else {
+
+			Open_door(Config_Ptr);
+		}
+	}
+
+	else {
+		BUZZER_Off();
+	}
+}
+int main(void) {
+	SREG |= (1 << 7);
+
+	DC_MOTOR_init();
+	BUZZER_init();
+
+	Timer_ConfigType Timer_Config = { 0, 6000, TIMER1, F_CPU_1024, CTC };
+	Timer_setCallBack(&calcTime, TIMER1);
+
+	TWI_ConfigType TWI_Config = { F_CPU_CLOCK, 0x02, 0x01 };
+
+	UART_ConfigType UART_Config = { EIGHT, DISABLED, SINGLE, 9600 };
+	TWI_init(&TWI_Config);
+	UART_init(&UART_Config);
+	while (UART_recieveByte() != M1_READY)
+		;
+	Recieve_Password();
+
+	while (1) {
+
+		Main_Menue(&Timer_Config);
+
+	}
+
+}

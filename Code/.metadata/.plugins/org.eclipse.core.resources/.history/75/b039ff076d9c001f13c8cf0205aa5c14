@@ -1,0 +1,298 @@
+/*
+ *	Main.c
+ *
+ *	HMI_ECU Application for smart door lock system
+ *
+ *  Created on: Nov 6, 2024
+ *      Author: yahia raouf
+ */
+
+/***************************************************************
+ *
+ * 							INCLUDES
+ *
+ * ************************************************************/
+
+#include "avr/io.h"
+#include "avr/interrupt.h"
+#include "Headers/keypad.h"
+#include "Headers/lcd.h"
+#include "Headers/timer.h"
+#include "Headers/uart.h"
+
+/*******************************************************************************
+ *
+ *	                        DEFINITIONS
+ *
+ *******************************************************************************/
+
+#define M1_READY			0x10
+#define M2_READY 			0x20
+#define ERROR_PASS 			0x00
+#define SAVE 				0x02
+#define END_SAVING 			0x03
+#define CHECK_PASS 			0x04
+#define UNLOCK_DOOR 		0x06
+
+/*******************************************************************************
+ *                           Global Variables                                  *
+ *******************************************************************************/
+
+uint16 g_tick = 0;
+uint8 counter_error = 0;
+uint8 return_flag = 0;
+
+/***************************************************************
+ *
+ * 					  FUNCTION PROTOTYPES
+ *
+ * ************************************************************/
+
+void calcTime(void);
+void newPass();
+void checkPass(Timer_ConfigType *config_type);
+void Open_Door(const Timer_ConfigType *Config_Ptr);
+void Main_menu(const Timer_ConfigType *Config_Ptr);
+
+/***************************************************************
+ *
+ * 							MAIN
+ *
+ * ************************************************************/
+
+int main() {
+	SREG |= (1 << 7);
+	LCD_init();
+
+	Timer_ConfigType Timer_Config = { 0, 6000, TIMER1, F_CPU_1024, CTC };
+	Timer_setCallBack(&calcTime, TIMER1);
+
+	UART_ConfigType UART_Config = { EIGHT, DISABLED, SINGLE, 9600 };
+	UART_init(&UART_Config);
+
+	UART_sendByte(M1_READY);
+	newPass();
+
+	while (1) {
+
+		Main_Menu(&Timer_Config);
+
+	}
+	return 0;
+}
+
+/***************************************************************
+ *
+ * 					FUNCITON DEFINITIONS
+ *
+ * ************************************************************/
+
+void calcTime() {
+	g_tick++;
+}
+void newPass() {
+
+	uint8 count_key = 0, key = 0;
+	uint64 pass = 0, confirm_pass = 0;
+
+	LCD_clearScreen();
+	LCD_moveCursor(0, 0);
+	LCD_displayString("Please enter pass:");
+
+	for (count_key = 0; count_key <= 5; count_key++) {
+		key = KEYPAD_getPressedKey();
+		_delay_ms(50);
+		while (!((key >= 0) && (key <= 9))) {
+
+			key = KEYPAD_getPressedKey();
+			_delay_ms(50);
+		}
+		LCD_moveCursor(1, 0);
+		LCD_displayCharacter('*');
+		pass = pass * 10 + key;
+		_delay_ms(250);
+	}
+
+	LCD_clearScreen();
+	LCD_moveCursor(0, 0);
+	LCD_displayString("please enter =");
+
+	while (!(KEYPAD_getPressedKey() = '=')) {
+		_delay_ms(50);
+	}
+
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0, 0, "please re-enter the");
+	LCD_displayStringRowColumn(1, 0, "same-pass: ");
+
+	for (count_key = 0; count_key <= 5; count_key++) {
+		key = KEYPAD_getPressedKey();
+		_delay_ms(50);
+		while (!((key >= 0) && (key <= 9))) {
+
+			key = KEYPAD_getPressedKey();
+			_delay_ms(50);
+		}
+		LCD_moveCursor(1, 0);
+		LCD_displayCharacter('*');
+		confirm_pass = confirm_pass * 10 + key;
+		_delay_ms(250);
+	}
+
+	LCD_clearScreen();
+	LCD_moveCursor(0, 0);
+	LCD_displayString("please enter =");
+
+	while (key != '=') {
+		key = KEYPAD_getPressedKey();
+		_delay_ms(50);
+	}
+
+	if (confirm_pass == pass) {
+		UART_sendByte(SAVE);
+		for (count_key = 0; count_key < 5; count_key++) {
+			pass = confirm_pass % 10;
+			while (UART_recieveByte() != M2_READY)
+				;
+			UART_sendByte(pass);
+			confirm_pass /= 10;
+		}
+		while (UART_recieveByte() != END_SAVING)
+			;
+	} else {
+		LCD_clearScreen();
+		LCD_displayStringRowColumn(0, 0, "PASSWORDS DONT");
+		LCD_displayStringRowColumn(1, 4, "MATCH");
+		_delay_ms(500);
+		newPass();
+	}
+}
+
+void checkPass(const Timer_ConfigType *config_ptr) {
+	uint8 key = 0, count_key = 0, pass_digit = 0, pass_error = 0;
+	;
+	uint64 pass = 0;
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0, 0, "Plz enter pass: ");
+
+	for (count_key = 0; count_key <= 5; count_key++) {
+		key = KEYPAD_getPressedKey();
+		_delay_ms(50);
+		while (!((key >= 0) && (key <= 9))) {
+
+			key = KEYPAD_getPressedKey();
+			_delay_ms(50);
+		}
+		LCD_moveCursor(1, 0);
+		LCD_displayCharacter('*');
+		pass = pass * 10 + key;
+		_delay_ms(250);
+	}
+
+	LCD_clearScreen();
+	LCD_moveCursor(0, 0);
+	LCD_displayString("please enter =");
+
+	while (key != '=') {
+		key = KEYPAD_getPressedKey();
+		_delay_ms(50);
+	}
+
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0, 0, "LOADING");
+
+	UART_sendByte(CHECK_PASS);
+
+	for (count_key = 0; count_key < 5; count_key++) {
+		pass_digit = pass % 10;
+		UART_sendByte(pass_digit);
+
+		if (UART_recieveByte() == ERROR_PASS) {
+			pass_error++;
+		}
+		pass /= 10;
+	}
+
+	if (pass_error != 0) {
+		counter_error++;
+		UART_sendByte(counter_error);
+
+		if (counter_error < 3) {
+			LCD_clearScreen();
+			LCD_displayStringRowColumn(0, 0, "INCORRECT PASS");
+			_delay_ms(500);
+			checkPass(config_ptr);
+		} else {
+			LCD_clearScreen();
+
+			Timer_init(config_ptr);
+			g_tick = 0;
+			while (g_tick != 60) {
+				LCD_displayStringRowColumn(0, 0, "Wait 60 Sec");
+				LCD_displayStringRowColumn(1, 0, "el7a2 7aramy");
+			}
+
+			counter_error = 0;
+			return_flag = 1;
+		}
+	} else {
+		UART_sendByte(4);
+		counter_error = 0;
+	}
+}
+
+void Open_Door(const Timer_ConfigType *Config_Ptr) {
+	UART_sendByte(UNLOCK_DOOR);
+
+	LCD_clearScreen();
+	Timer_init(Config_Ptr);
+	g_tick = 0;
+
+	while (g_tick != 15) {
+		LCD_displayStringRowColumn(0, 0, "Opening Door..");
+	}
+
+	LCD_clearScreen();
+	g_tick = 0;
+
+	while (g_tick != 3) {
+		LCD_displayStringRowColumn(0, 0, "Door Opened");
+	}
+
+	LCD_clearScreen();
+	g_tick = 0;
+
+	while (g_tick != 15) {
+		LCD_displayStringRowColumn(0, 0, "Closing Door..");
+	}
+}
+
+void Main_Menu(const Timer_ConfigType *Config_Ptr) {
+	uint8 key = 0;
+
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0, 0, "+ : Open Door");
+	LCD_displayStringRowColumn(1, 0, "- : Change Pass");
+
+	while ((key != '+') && (key != '-')) {
+		key = KEYPAD_getPressedKey();
+		_delay_ms(50);
+	}
+
+	checkPass(Config_Ptr);
+	UART_sendByte(return_flag);
+
+	if (return_flag == 0) {
+		UART_sendByte(key);
+		if (key == '-') {
+			newPass();
+
+		} else {
+			Open_Door(Config_Ptr);
+		}
+	} else {
+		return_flag = 0;
+	}
+
+}
+
